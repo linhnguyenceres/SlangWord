@@ -40,7 +40,7 @@ public class MeaningKey {
         return SlangWord.containsKey(in);
     }
     
-    public void addNewWord(String slangin, String meaning in){
+    public void addNewWord(String slangin, String meaningin){
         
     }
     
