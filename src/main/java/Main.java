@@ -15,6 +15,10 @@ public class Main {
         public static void main(String[] args) {
             Scanner in=new Scanner(System.in);
             int chon;
+            SlangWord slag = new SlangWord();
+            slag.ReadFromSlangwordFile();
+//            slag.ReadTempSlangwordFile();
+//            slag.PrintList();
             do
         {
             System.out.println("1. Tim kiem theo slang word");
@@ -33,7 +37,8 @@ public class Main {
         switch(chon)
         {
             case 1:
-                break; 
+                slag.findBySlangword();
+//                break; 
             case 2:
                 break;  
             case 3:
