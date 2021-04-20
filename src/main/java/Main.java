@@ -38,8 +38,9 @@ public class Main {
         {
             case 1:
                 slag.findBySlangword();
-//                break; 
+                break; 
             case 2:
+                slag.findByDefinition();
                 break;  
             case 3:
                 break;
