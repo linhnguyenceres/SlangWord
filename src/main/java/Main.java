@@ -22,7 +22,7 @@ public class Main {
             do
         {
             System.out.println("1. Tim kiem theo slang word");
-            System.out.println("2. Tim kiem theo definition");
+            System.out.println("2. Tim kiem theo dinh nghia");
             System.out.println("3. Hien thi history");
             System.out.println("4. Them 1 slang word moi");
             System.out.println("5. Sua 1 slang word");
@@ -30,7 +30,7 @@ public class Main {
             System.out.println("7. Reset danh sach slang word goc");
             System.out.println("8. Random 1 slang word");
             System.out.println("9. Do vui voi random slang word");
-            System.out.println("10. Do vui voi definition slang word");
+            System.out.println("10. Do vui voi dinh nghia slang word");
             System.out.println("____________________________");
             System.out.println("Chon chuc nang : ");
             chon=in.nextInt();
@@ -43,6 +43,7 @@ public class Main {
                 slag.findByDefinition();
                 break;  
             case 3:
+                slag.showHistory();
                 break;
             case 4:
                 break;

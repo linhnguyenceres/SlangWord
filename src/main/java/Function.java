@@ -19,7 +19,15 @@ import java.util.Stack;
 class SlangWord {
 
     private HashMap<String, String> map;
-    private final Stack<String> historyStack = null;
+    private final Stack<String> historyStack;
+    
+    public SlangWord() {
+        map = new HashMap<>();
+        historyStack = new Stack();
+        if (ReadTempSlangwordFile() == false) {
+            ReadFromSlangwordFile();
+        }
+    }
 
     public boolean ReadTempSlangwordFile() {
         map = new HashMap<>();
@@ -71,10 +79,11 @@ class SlangWord {
 //        });
 //    }
     public void findBySlangword() {
-//        String push = historyStack.push(SlagWord);
+
         Scanner sc = new Scanner(System.in);
         System.out.println("Nhap slag word can lay : ");
         String SlagWord = sc.nextLine();
+        historyStack.push(SlagWord);
 
 
         if (map.containsKey(SlagWord)) {
@@ -92,6 +101,18 @@ class SlangWord {
         for (Map.Entry<String, String> entry : map.entrySet()) {
             if (entry.getValue().toLowerCase().contains(definition.toLowerCase())) {
                 System.out.println(entry.getKey());
+            }
+        }
+    }
+    
+    public void showHistory() {
+        System.out.println("Danh sach cac slag word da tim sap xep theo moi nhat:");
+        int count = 0;
+        for (int i = this.historyStack.size() - 1; i >= 0; i--) {
+            System.out.println(this.historyStack.get(i));
+            count++;
+            if (count == 10) {
+                break;
             }
         }
     }
