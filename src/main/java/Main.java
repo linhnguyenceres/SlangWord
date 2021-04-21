@@ -46,6 +46,7 @@ public class Main {
                 slag.showHistory();
                 break;
             case 4:
+                slag.AddNewSlangWord();
                 break;
             case 5:
                 break;

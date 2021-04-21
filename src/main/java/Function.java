@@ -20,6 +20,7 @@ class SlangWord {
 
     private HashMap<String, String> map;
     private final Stack<String> historyStack;
+    Scanner sc = new Scanner(System.in);
     
     public SlangWord() {
         map = new HashMap<>();
@@ -73,14 +74,7 @@ class SlangWord {
         }
     }
 
-//    public void PrintList() {
-//        map.entrySet().forEach((entry) -> {
-//            System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
-//        });
-//    }
     public void findBySlangword() {
-
-        Scanner sc = new Scanner(System.in);
         System.out.println("Nhap slag word can lay : ");
         String SlagWord = sc.nextLine();
         historyStack.push(SlagWord);
@@ -95,8 +89,7 @@ class SlangWord {
     }
     
     public void findByDefinition() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Nhap definiton: ");
+        System.out.println("Nhap dinh nghia: ");
         String definition = sc.nextLine();
         for (Map.Entry<String, String> entry : map.entrySet()) {
             if (entry.getValue().toLowerCase().contains(definition.toLowerCase())) {
@@ -106,7 +99,7 @@ class SlangWord {
     }
     
     public void showHistory() {
-        System.out.println("Danh sach cac slag word da tim sap xep theo moi nhat:");
+        System.out.println("Danh sach cac slang word da tim sap xep theo moi nhat:");
         int count = 0;
         for (int i = this.historyStack.size() - 1; i >= 0; i--) {
             System.out.println(this.historyStack.get(i));
@@ -116,5 +109,33 @@ class SlangWord {
             }
         }
     }
+    
+     public void AddNewSlangWord() {
+        System.out.println("Nhap slang word can them : ");
+        String slag = sc.nextLine();
+        System.out.println("Nhap dinh nghia cua slang word: ");
+        String mean = sc.nextLine();
+        if (map.containsKey(slag) == true) {
+            System.out.println("Slang word da ton tai!!Ban muon ghi de hay them moi??");
+            System.out.println("0.Huy bo thao tac");
+            System.out.println("1.Them moi");
+            System.out.println("2.Ghi de");
+            String choose = sc.nextLine();
+            switch (choose) {
+                case "0":
+                    break;
+                case "1":
+                    map.put(slag, mean);
+                    break;
+                case "2":
+                    map.put(slag, map.get(slag) + "| " + mean);
+                    break;
+                default:
+                    System.out.println("Khong co lua chon nay!");
+                    break;
+            }
+
+        }
+    } 
 
 }
