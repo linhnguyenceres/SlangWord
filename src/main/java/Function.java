@@ -137,5 +137,70 @@ class SlangWord {
 
         }
     } 
+     
+    public void EditSlangWord() {
+        System.out.println("Nhap slang word can tim : ");
+        String slag = sc.nextLine();
+        if (map.containsKey(slag) == false) {
+            System.out.println("Khong tim thay slag word!");
+        } else {
+            System.out.println("Nhap lua chon : ");
+            System.out.println("0.Huy thao tac");
+            System.out.println("1.Chinh sua slang word");
+            System.out.println("2.Chinh sua y nghia cua slang word");
+            System.out.println("3.Chinh sua slang word va y nghia");
+            String choose = sc.nextLine();
+            switch (choose) {
+                case "0":
+                    break;
+                case "1":
+                    System.out.println("Nhap slag word moi");
+                    String NewSlagWord = sc.nextLine();
+                    map.put(NewSlagWord, map.get(slag));
+                    map.remove(slag);
+                    break;
+                case "2":
+                    System.out.println("Nhap y nghia moi cua slang word:");
+                    String NewMeanning = sc.nextLine();
+                    map.put(slag, NewMeanning);
+                    break;
+                case "3":
+                    System.out.println("Nhap slang word moi");
+                    NewSlagWord = sc.nextLine();
+                    System.out.println("Nhap y nghia moi cua slang word:");
+                    NewMeanning = sc.nextLine();
+                    map.remove(slag);
+                    map.put(NewSlagWord, NewMeanning);
+                    break;
+                default:
+                    System.out.println("Khong co lua chon nay!!");
+                    break;
+            }
+        }
+    }
+    
+    public void DeleteSlangWord() {
+        System.out.println("Nhap slang word can xoa : ");
+        String SlagWord = sc.nextLine();
+        if (map.containsKey(SlagWord) == false) {
+            System.out.println("Khong ton tai slang word nay!");
+        } else {
+            System.out.println("Ban co chac chan muon xoa tu nay?");
+            System.out.println("1.Xoa ngay");
+            System.out.println("2.Huy");
+            String choice = sc.nextLine();
+            switch (choice) {
+                case "1":
+                    map.remove(SlagWord);
+                    System.out.println("Xoa slang word thanh cong!");
+                    break;
+                case "2":
+                    break;
+                default:
+                    System.out.println("Khong tim thay lua chon!!");
+            }
+        }
+
+    }
 
 }

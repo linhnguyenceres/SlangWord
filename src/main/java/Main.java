@@ -49,8 +49,10 @@ public class Main {
                 slag.AddNewSlangWord();
                 break;
             case 5:
+                slag.EditSlangWord();
                 break;
             case 6: 
+                slag.DeleteSlangWord();
                 break;
             case 7:
                 break;
