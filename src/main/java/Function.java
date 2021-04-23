@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -200,7 +201,21 @@ class SlangWord {
                     System.out.println("Khong tim thay lua chon!!");
             }
         }
+    }
+    
+    public void Reset() {
+        this.map.clear();
+        ReadFromSlangwordFile();
+    }
 
+    public void RandomSlagWord() {
+        System.out.println("Random slang word :");
+        Random generator = new Random();
+        Object[] key = map.keySet().toArray();
+        int numberRd = generator.nextInt(key.length);
+        String randomKey = key[numberRd].toString();
+        System.out.println("Key : " + randomKey);
+        System.out.println("Dinh nghia : " + map.get(randomKey));
     }
 
 }

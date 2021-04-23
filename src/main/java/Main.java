@@ -55,12 +55,16 @@ public class Main {
                 slag.DeleteSlangWord();
                 break;
             case 7:
+                slag.Reset();
                 break;
             case 8:
+                slag.RandomSlagWord();
                 break;
             case 9:
                 break;
             case 10:
+                break;
+            case 11:
                 {
                     System.out.println("Thoat!");
                     System.exit(0);
