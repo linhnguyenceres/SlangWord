@@ -2,7 +2,10 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
@@ -216,6 +219,39 @@ class SlangWord {
         String randomKey = key[numberRd].toString();
         System.out.println("Key : " + randomKey);
         System.out.println("Dinh nghia : " + map.get(randomKey));
+    }
+    
+    public void QuizFirst() {
+        ArrayList<String> answers = new ArrayList<>();
+        String correctAnswer;
+        System.out.println("Chao mung ban den voi game show!!");
+        System.out.println("Chon dinh nghia dung cho slang word sau : ");
+        Random generator = new Random();
+        Object[] key = map.keySet().toArray();
+        int numberRd = generator.nextInt(key.length);
+        String randomKey = key[numberRd].toString();
+        correctAnswer = map.get(randomKey);
+        answers.add(correctAnswer);
+        for (int i = 0; i < 3; i++) {
+            numberRd = generator.nextInt(numberRd);
+            answers.add(map.get(key[numberRd].toString()));
+        }
+        Collections.shuffle(answers);
+        System.out.println("Slang word : " + randomKey);
+        for (int i = 0; i < answers.size(); i++) {
+            System.out.println(i + 1 + " " + answers.get(i));
+        }
+        String choice = sc.nextLine();
+
+        try {
+            if (answers.get(Integer.parseInt(choice) - 1).equals(correctAnswer)) {
+                System.out.println("Chuc mung ban da tra loi dung");
+            } else {
+                System.out.println("Ban da tra loi sai!");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Ban da tra loi sai!");
+        }
     }
 
 }

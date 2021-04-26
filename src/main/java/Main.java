@@ -61,6 +61,7 @@ public class Main {
                 slag.RandomSlagWord();
                 break;
             case 9:
+                slag.QuizFirst();
                 break;
             case 10:
                 break;
