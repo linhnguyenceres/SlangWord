@@ -100,16 +100,10 @@ final class SlangWord {
     public void findByDefinition() {
         System.out.println("Nhap dinh nghia: ");
         String definition = sc.nextLine();
-        int isExists = 1;
         for (Map.Entry<String, String> entry : map.entrySet()) {
             if (entry.getValue().toLowerCase().contains(definition.toLowerCase())) {
                 System.out.println(entry.getKey());
-            } else{
-                isExists = 0;
-            }
-        }
-        if (isExists == 0){
-            System.out.println("Khong ton tai slangword co dinh nghia nay!");
+            } 
         }
     }
     
