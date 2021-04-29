@@ -2,6 +2,8 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -20,7 +22,7 @@ import java.util.Stack;
  *
  * @author ASUS
  */
-class SlangWord {
+final class SlangWord {
 
     private HashMap<String, String> map;
     private final Stack<String> historyStack;
@@ -47,14 +49,21 @@ class SlangWord {
                     }
                     map.put(arrayOfString[0].trim(), arrayOfString[1].trim());
                 }
-                System.out.println(map);
+//                System.out.println(map);
                 return true;
             }
         } catch (Exception e) {
-            System.out.println("ABC");
             e.printStackTrace();
         }
         return false;
+    }
+    
+    public void writeToTempSlangwordFile() throws IOException {
+        try (FileWriter fw = new FileWriter("tempSlangword.txt")) {
+            for (Map.Entry<String, String> entry : map.entrySet()) {
+                fw.write(entry.getKey() + "`" + entry.getValue() + "\n");
+            }
+        }
     }
 
     public void ReadFromSlangwordFile() {
@@ -69,10 +78,6 @@ class SlangWord {
                 String[] pair = line.split("`");
                 map.put(pair[0].trim(), pair[1].trim());
             }
-
-//            map.entrySet().forEach((entry) -> {
-//                System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
-//            });
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -95,10 +100,16 @@ class SlangWord {
     public void findByDefinition() {
         System.out.println("Nhap dinh nghia: ");
         String definition = sc.nextLine();
+        int isExists = 1;
         for (Map.Entry<String, String> entry : map.entrySet()) {
             if (entry.getValue().toLowerCase().contains(definition.toLowerCase())) {
                 System.out.println(entry.getKey());
+            } else{
+                isExists = 0;
             }
+        }
+        if (isExists == 0){
+            System.out.println("Khong ton tai slangword co dinh nghia nay!");
         }
     }
     
@@ -138,7 +149,9 @@ class SlangWord {
                     System.out.println("Khong co lua chon nay!");
                     break;
             }
-
+        }else{
+            map.put(slag, mean);
+            System.out.println("Them slang word thanh cong");
         }
     } 
      
@@ -189,7 +202,7 @@ class SlangWord {
         if (map.containsKey(SlagWord) == false) {
             System.out.println("Khong ton tai slang word nay!");
         } else {
-            System.out.println("Ban co chac chan muon xoa tu nay?");
+            System.out.println("Ban co chac chan muon xoa slang word nay?");
             System.out.println("1.Xoa ngay");
             System.out.println("2.Huy");
             String choice = sc.nextLine();
@@ -209,6 +222,7 @@ class SlangWord {
     public void Reset() {
         this.map.clear();
         ReadFromSlangwordFile();
+        System.out.println("Reset thanh cong");
     }
 
     public void RandomSlagWord() {
@@ -241,6 +255,7 @@ class SlangWord {
         for (int i = 0; i < answers.size(); i++) {
             System.out.println(i + 1 + " " + answers.get(i));
         }
+        System.out.print("Dap an cua ban la: ");
         String choice = sc.nextLine();
 
         try {
@@ -250,8 +265,42 @@ class SlangWord {
                 System.out.println("Ban da tra loi sai!");
             }
         } catch (NumberFormatException e) {
-            System.out.println("Ban da tra loi sai!");
+            e.printStackTrace();
         }
     }
+    
+    public void QuizSecond() {
+        List<String> answers = new ArrayList<>();
+        String correctAnswer;
+        System.out.println("Chao mung ban den voi game show!!");
+        System.out.println("Chon slang word dung cho dinh nghia sau : ");
+        Random generator = new Random();
+        Object[] key = map.keySet().toArray();
+        int numberRd = generator.nextInt(key.length);
+        String randomKey = key[numberRd].toString();
+        correctAnswer = randomKey;
+        answers.add(correctAnswer);
+        for (int i = 0; i < 3; i++) {
+            numberRd = generator.nextInt(numberRd);
+            answers.add(key[numberRd].toString());
+        }
+        Collections.shuffle(answers);
+        System.out.println("Definition : " + map.get(randomKey));
+        for (int i = 0; i < answers.size(); i++) {
+            System.out.println(i + 1 + " " + answers.get(i));
+        }
+        String choose = sc.nextLine();
+
+        try {
+            if (answers.get(Integer.parseInt(choose) - 1).equals(correctAnswer)) {
+                System.out.println("Chuc mung ban da tra loi dung");
+            } else {
+                System.out.println("Rat tiec ban da tra loi sai!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+   
 
 }

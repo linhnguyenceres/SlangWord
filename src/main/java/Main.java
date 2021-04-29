@@ -1,4 +1,5 @@
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /*
@@ -12,13 +13,11 @@ import java.util.Scanner;
  * @author ASUS
  */
 public class Main {
-        public static void main(String[] args) {
+        public static void main(String[] args) throws IOException {
             Scanner in=new Scanner(System.in);
             int chon;
-            SlangWord slag = new SlangWord();
-            slag.ReadFromSlangwordFile();
-//            slag.ReadTempSlangwordFile();
-//            slag.PrintList();
+            SlangWord slang = new SlangWord();
+            slang.writeToTempSlangwordFile();
             do
         {
             System.out.println("1. Tim kiem theo slang word");
@@ -32,38 +31,39 @@ public class Main {
             System.out.println("9. Do vui voi random slang word");
             System.out.println("10. Do vui voi dinh nghia slang word");
             System.out.println("____________________________");
-            System.out.println("Chon chuc nang : ");
-            chon=in.nextInt();
+            System.out.print("Chon chuc nang : ");
+            chon = in.nextInt();
         switch(chon)
         {
             case 1:
-                slag.findBySlangword();
+                slang.findBySlangword();
                 break; 
             case 2:
-                slag.findByDefinition();
+                slang.findByDefinition();
                 break;  
             case 3:
-                slag.showHistory();
+                slang.showHistory();
                 break;
             case 4:
-                slag.AddNewSlangWord();
+                slang.AddNewSlangWord();
                 break;
             case 5:
-                slag.EditSlangWord();
+                slang.EditSlangWord();
                 break;
             case 6: 
-                slag.DeleteSlangWord();
+                slang.DeleteSlangWord();
                 break;
             case 7:
-                slag.Reset();
+                slang.Reset();
                 break;
             case 8:
-                slag.RandomSlagWord();
+                slang.RandomSlagWord();
                 break;
             case 9:
-                slag.QuizFirst();
+                slang.QuizFirst();
                 break;
             case 10:
+                slang.QuizSecond();
                 break;
             case 11:
                 {
